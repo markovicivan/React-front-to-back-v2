@@ -29,9 +29,9 @@ const Register = () => {
             setAlert('Passwords do not match', 'danger');
         } else {
             register({
-                name: name[0],
-                email: email[0],
-                password: password[0]
+                name,
+                email,
+                password
             });
         }
     }
