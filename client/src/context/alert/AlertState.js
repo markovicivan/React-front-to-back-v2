@@ -1,0 +1,38 @@
+import React, { useReducer } from 'react';
+import uuid from 'uuid';
+import AlertContext from './alertContext';
+import alertReducer from './alertReducer';
+import {
+    SET_ALERT, REMOVE_ALERT
+} from '../types';
+
+const AlertState = props => {
+    const initialState = [];
+
+    const [state, dispatch] = useReducer(alertReducer, initialState);
+
+    //Set alert
+    const setAlert = (msg, type) => {
+        const id = uuid.v4();
+        console.log('Start to dispatch');
+        dispatch({ 
+            type: SET_ALERT, 
+            payload: {msg, type, id} 
+        });
+        console.log('Setting timeout');
+        setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id}), 3000);
+    };
+
+    return (
+        <AlertContext.Provider
+            value={{
+                alerts: state,
+                setAlert
+            }}
+        >
+            {props.children}
+        </AlertContext.Provider>
+    )
+};
+
+export default AlertState;
