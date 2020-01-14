@@ -10,6 +10,7 @@ connectDB();
 //Init Middleware
 app.use(express.json({ extended: false }));
 
+//DELETE THIS BEFORE DEPLOYMENT
 app.get('/', (req, res) => res.json({ msg: "Welcome to ContactKeeper API..." }));
 
 //Define routes
